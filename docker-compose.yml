@@ -1,0 +1,35 @@
+version: '3.9'
+
+services:
+  db:
+    container_name: varaamo_db
+    image: mariadb:10.5
+    ports:
+      - "3306:3306"
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+  web:
+    build: .
+    command: >
+      sh -c "
+      pipenv run manage.py migrate &&
+      pipenv run manage.py runserver 0.0.0.0:8000
+      "
+    container_name: varaamo_web
+    depends_on:
+      - db
+    env_file:
+      - .env
+    environment:
+      DJANGO_SETTINGS_MODULE: varaamo.settings.development
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    volumes:
+      - .:/code
+
+volumes:
+  mysql_data:
