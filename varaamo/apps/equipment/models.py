@@ -25,7 +25,7 @@ class EquipmentItem(models.Model):
     visible = models.BooleanField(default=True)
     rentable = models.BooleanField(default=True)
 
-    image = models.ImageField(upload_to="equipment_images/")
+    image = models.ImageField(upload_to="equipment_images/", blank=True)
 
     equipment_class = models.ForeignKey(
         "EquipmentClass",
