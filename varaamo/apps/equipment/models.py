@@ -9,11 +9,20 @@ class EquipmentClass(models.Model):
     visible = models.BooleanField(default=True)
     rentable = models.BooleanField(default=True)
 
+    def __str__(self):
+        return f"{self.__class__.__name__} #{self.id}: {self.name}"
+    
+    class Meta:
+        verbose_name = "equipment class"
+        verbose_name_plural = "equipment classes"
 
 class EquipmentGroup(models.Model):
     """Group of similar equipment"""
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, editable=False)
+
+    def __str__(self):
+        return f"{self.__class__.__name__} #{self.id}: {self.name}"
 
 
 class EquipmentItem(models.Model):
@@ -40,3 +49,5 @@ class EquipmentItem(models.Model):
         blank=True,
     )
 
+    def __str__(self):
+        return f"{self.__class__.__name__} #{self.id}: {self.equipment_class.name} / {self.name}"
