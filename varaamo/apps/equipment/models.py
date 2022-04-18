@@ -20,6 +20,7 @@ class EquipmentGroup(models.Model):
     """Group of similar equipment"""
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=100, editable=False)
+    image = models.ImageField(upload_to="equipment_images/", blank=True)
 
     def __str__(self):
         return f"{self.__class__.__name__} #{self.id}: {self.name}"
@@ -33,6 +34,7 @@ class EquipmentItem(models.Model):
     short_slug = models.SlugField(max_length=10, editable=False)
     visible = models.BooleanField(default=True)
     rentable = models.BooleanField(default=True)
+    count = models.IntegerField(default=1, null=False, blank=False)
 
     image = models.ImageField(upload_to="equipment_images/", blank=True)
 
