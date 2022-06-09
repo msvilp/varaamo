@@ -7,6 +7,6 @@ setup(name='Varaamo-app',
       description='',
       author='Mikko Vilpponen',
       author_email='vilpponen@protecomp.fi',
-      packages=['varaamo'],
+      packages=['varaamo', 'myapps'],
       scripts=["manage.py"],
 )
