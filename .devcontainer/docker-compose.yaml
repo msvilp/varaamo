@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    ports:
+      - "4316:3306"
+    env_file:
+      - container.env
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+  django:
+    build:
+      context: ../
+      dockerfile: ./.devcontainer/django.Dockerfile
+    container_name: varaamo_django
+    command: ./manage.py runserver 0.0.0.0:8000
+    restart: unless-stopped
+    env_file:
+      - container.env
+    environment:
+      DB_HOST: db
+    volumes:
+      - ../:/code
+    depends_on:
+      db:
+        condition: service_healthy
+  sveltekit:
+    build:
+      context: ../
+      dockerfile: ./varaamo-frontend/.devcontainer/sveltekit.Dockerfile
+    restart: always
+    command: npm run dev -- --host 0.0.0.0
+    env_file:
+      - container.env
+    volumes:
+      - ../:/workspace
+      - node_modules:/workspace/varaamo-frontend/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8030:80"
+    depends_on:
+      - django
+      - sveltekit
+volumes:
+  mysql_data:
+  node_modules:

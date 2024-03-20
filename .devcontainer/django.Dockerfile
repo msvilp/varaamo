@@ -1,13 +1,10 @@
-FROM python:3.11-alpine
+FROM mcr.microsoft.com/devcontainers/python:3.11-bullseye
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONFAULTHANDLER 1
 ENV PYTHONUNBUFFERED 1
-
-RUN apk update && apk add --no-cache \
-    # Required for installing/upgrading pip packages like mysqlclient etc.:
-    libc-dev gcc make python3-dev mariadb-dev jpeg-dev zlib-dev
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Set work directory
 RUN mkdir /code
@@ -21,10 +18,11 @@ COPY ./Pipfile.lock .
 COPY ./setup.py .
 RUN mkdir varaamo
 COPY ./varaamo/__init__.py ./varaamo/
+RUN mkdir myapps
 COPY ./myapps/__init__.py ./myapps/
 COPY ./manage.py .
 
-RUN pipenv install --dev --deploy
+RUN pipenv install --dev --deploy --system
 
 # Copy project code
 COPY . /code/
