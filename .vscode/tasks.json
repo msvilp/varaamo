@@ -7,7 +7,8 @@
             "command": "scripts/entrypoint_django.sh",
             "presentation": {
                 "reveal": "always",
-                "panel": "new"
+                "panel": "new",
+                "close": true
             },
             "problemMatcher": [],
             "runOptions": {
@@ -20,7 +21,8 @@
             "command": "scripts/entrypoint_sveltekit.sh",
             "presentation": {
                 "reveal": "always",
-                "panel": "new"
+                "panel": "new",
+                "close": true
             },
             "problemMatcher": [],
             "runOptions": {

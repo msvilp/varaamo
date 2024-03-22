@@ -11,6 +11,10 @@
 	"service": "varaamo",
 	"workspaceFolder": "/code",
 
+	"containerEnv": {
+		"IN_DEVCONTAINER": "true"
+	},
+
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
