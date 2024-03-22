@@ -21,7 +21,8 @@
 	"customizations": {
 		"vscode": {
 			"extensions": [
-				"ms-python.python"
+				"ms-python.python",
+				"svelte.svelte-vscode"
 			],
 			"settings": {
 				"python.linting.flake8Enabled": true,
