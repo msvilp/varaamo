@@ -2,7 +2,7 @@
 
 if [ -z "$IN_DEVCONTAINER" ]; then
     # Not in the dev container, exit the script
-    code; exit
+    exit
 fi
 
 cd varaamo-frontend
