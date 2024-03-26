@@ -14,12 +14,13 @@ services:
         test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
         timeout: 20s
         retries: 10
-  django:
+
+  varaamo:
     build:
       context: ../
-      dockerfile: ./.devcontainer/django.Dockerfile
-    container_name: varaamo_django
-    command: ./manage.py runserver 0.0.0.0:8000
+      dockerfile: ./.devcontainer/varaamo.Dockerfile
+    container_name: varaamo
+    command: /bin/sh -c "while sleep 1000; do :; done"
     restart: unless-stopped
     env_file:
       - container.env
@@ -27,19 +28,6 @@ services:
       DB_HOST: db
     volumes:
       - ../:/code
-    depends_on:
-      db:
-        condition: service_healthy
-  sveltekit:
-    build:
-      context: ../
-      dockerfile: ./varaamo-frontend/.devcontainer/sveltekit.Dockerfile
-    restart: always
-    command: npm run dev -- --host 0.0.0.0
-    env_file:
-      - container.env
-    volumes:
-      - ../:/workspace
       - node_modules:/workspace/varaamo-frontend/node_modules
     depends_on:
       db:
@@ -53,8 +41,7 @@ services:
     ports:
       - "8030:80"
     depends_on:
-      - django
-      - sveltekit
+      - varaamo
 volumes:
   mysql_data:
   node_modules:

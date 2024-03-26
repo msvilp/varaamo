@@ -1,0 +1,33 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Entrypoint Django",
+            "type": "shell",
+            "command": "scripts/entrypoint_django.sh",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "close": true
+            },
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        },
+        {
+            "label": "Entrypoint SvelteKit",
+            "type": "shell",
+            "command": "scripts/entrypoint_sveltekit.sh",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new",
+                "close": true
+            },
+            "problemMatcher": [],
+            "runOptions": {
+                "runOn": "folderOpen"
+            }
+        }
+    ]
+}
