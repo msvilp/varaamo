@@ -1,0 +1,47 @@
+version: "3"
+
+services:
+  db:
+    image: mariadb:10.11
+    restart: unless-stopped
+    ports:
+      - "4316:3306"
+    env_file:
+      - container.env
+    volumes:
+      - "mysql_data:/var/lib/mysql"
+    healthcheck:
+        test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+        timeout: 20s
+        retries: 10
+
+  varaamo:
+    build:
+      context: ../
+      dockerfile: ./.devcontainer/varaamo.Dockerfile
+    container_name: varaamo
+    command: /bin/sh -c "while sleep 1000; do :; done"
+    restart: unless-stopped
+    env_file:
+      - container.env
+    environment:
+      DB_HOST: db
+    volumes:
+      - ../:/code
+      - node_modules:/workspace/varaamo-frontend/node_modules
+    depends_on:
+      db:
+        condition: service_healthy
+
+  nginx:
+    image: nginx
+    restart: always
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    ports:
+      - "8030:80"
+    depends_on:
+      - varaamo
+volumes:
+  mysql_data:
+  node_modules:

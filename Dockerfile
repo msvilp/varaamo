@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM python:3.11-alpine
 
 # Set environment variables
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -20,7 +20,8 @@ COPY ./Pipfile .
 COPY ./Pipfile.lock .
 COPY ./setup.py .
 RUN mkdir varaamo
-COPY ./varaamo/__init__.py ./varaamo
+COPY ./varaamo/__init__.py ./varaamo/
+COPY ./myapps/__init__.py ./myapps/
 COPY ./manage.py .
 
 RUN pipenv install --dev --deploy
