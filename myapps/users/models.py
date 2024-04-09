@@ -22,10 +22,13 @@ class RentalUser(models.Model):
         return f"{self.__class__.__name__} #{self.id}: {self.name}"
 
 
+def default_expiry_date():
+    return datetime.now + timedelta(hours=2)
+
 class RentalUserLogin(models.Model):
     user = models.ForeignKey("RentalUser", on_delete=models.CASCADE)
     uuid = models.UUIDField(default=uuid.uuid4, unique=True)
-    expires = models.DateTimeField(default=lambda: datetime.now + timedelta(hours=2))
+    expires = models.DateTimeField(default=default_expiry_date)
 
     def is_active(self):
         return self.expires < datetime.datetime.now
