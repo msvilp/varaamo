@@ -6,6 +6,7 @@ from .base import *  # noqa: F403, F401
 import os
 
 ALLOWED_HOSTS = ["*"]
+CSRF_TRUSTED_ORIGINS = ["http://localhost:8030"]
 DEBUG = True
 
 DATABASES = {
