@@ -19,7 +19,7 @@ class EquipmentPriceRule(models.Model):
     price_group = models.ForeignKey("EquipmentPriceGroup", on_delete=models.CASCADE, related_name="rules")
 
     def __str__(self):
-        return f"{self.__class__.__name__} #{self.id}: {self.name}"
+        return f"{self.__class__.__name__} #{self.id}: {self.customer_price} / {self.member_price} / {self.time}"
 
     class Meta:
         verbose_name = "equipment price rule"

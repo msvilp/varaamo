@@ -2,6 +2,11 @@ from django.contrib import admin
 
 from . import models
 
+class PriceRuleInline(admin.TabularInline):
+    model = models.EquipmentPriceRule
+
+class PriceGroupAdmin(admin.ModelAdmin):
+    inlines = [PriceRuleInline]
 
 class EquipmentClassAdmin(admin.ModelAdmin):
     list_display = ('name', 'visible', 'rentable')
@@ -21,3 +26,4 @@ class EquipmentItemAdmin(admin.ModelAdmin):
 admin.site.register(models.EquipmentClass, EquipmentClassAdmin)
 admin.site.register(models.EquipmentGroup, EquipmentGroupAdmin)
 admin.site.register(models.EquipmentItem, EquipmentItemAdmin)
+admin.site.register(models.EquipmentPriceGroup, PriceGroupAdmin)
