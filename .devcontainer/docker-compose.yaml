@@ -26,6 +26,7 @@ services:
       - container.env
     environment:
       DB_HOST: db
+      DATABASE_URL: mysql://root:yourlocalrootpassword@db:3306/varaamo
     volumes:
       - ../:/code
       - node_modules:/workspace/varaamo-frontend/node_modules
