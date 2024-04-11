@@ -22,7 +22,6 @@ class EquipmentItemAdmin(admin.ModelAdmin):
     def equipment_class_name(self, equipment):
         return equipment.equipment_class.name
 
-
 admin.site.register(models.EquipmentClass, EquipmentClassAdmin)
 admin.site.register(models.EquipmentGroup, EquipmentGroupAdmin)
 admin.site.register(models.EquipmentItem, EquipmentItemAdmin)
