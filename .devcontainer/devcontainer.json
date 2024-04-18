@@ -26,11 +26,12 @@
 		"vscode": {
 			"extensions": [
 				"ms-python.python",
+				"ms-python.flake8",
 				"svelte.svelte-vscode"
 			],
 			"settings": {
-				"python.linting.flake8Enabled": true,
-				"python.linting.flake8Args": [
+				"flake8.enabled": true,
+				"flake8.args": [
 					"--max-line-length=99"
 				]
 			}
