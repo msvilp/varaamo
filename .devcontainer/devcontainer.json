@@ -19,18 +19,19 @@
 	// "features": {},
 
 	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "./.devcontainer/post_create.sh",
+	"postCreateCommand": "/tmp/.devcontainer/post_create.sh",
 
 	// Configure tool-specific properties.
 	"customizations": {
 		"vscode": {
 			"extensions": [
 				"ms-python.python",
+				"ms-python.flake8",
 				"svelte.svelte-vscode"
 			],
 			"settings": {
-				"python.linting.flake8Enabled": true,
-				"python.linting.flake8Args": [
+				"flake8.enabled": true,
+				"flake8.args": [
 					"--max-line-length=99"
 				]
 			}
