@@ -7,6 +7,7 @@
 # on the host machine and don't need to be reinstalled every time.
 
 echo "Running post create script"
+git clone https://github.com/msvilp/varaamo.git /code
 echo "Installing pip dependencies"
 export PIPENV_VENV_IN_PROJECT=1
 pipenv install --dev

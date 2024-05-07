@@ -1,0 +1,1 @@
+// Hae tietokannasta kaikki tämän päivän varaukset
