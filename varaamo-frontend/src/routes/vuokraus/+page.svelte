@@ -22,4 +22,9 @@
 
 <h2>Vuokrattavat tuotteet</h2>
 
+<div class="btn-group variant-filled">
+	<button>Kajakit</button>
+	<button>SUP-laudat</button>
+</div>
+
 <Table source={tableSimple} />

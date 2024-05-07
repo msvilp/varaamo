@@ -2,7 +2,11 @@ import prisma from '$lib/prisma';
 import type { PageServerLoad } from './$types';
 
 export const load = (async () => {
-    const response = await prisma.equipment_equipmentitem.findMany();
+    const classItems = await prisma.equipment_equipmentitem.findMany({
+        include: {
+            equipment_equipmentclass: true
+        }
+    });
 
-    return { feed: response };
+    return { feed: classItems };
 }) satisfies PageServerLoad;
