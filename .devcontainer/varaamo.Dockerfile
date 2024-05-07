@@ -27,8 +27,13 @@ RUN node_version=v20.8.0; arch=$(arch | sed s/aarch64/arm64/ | sed s/x86_64/x64/
 RUN corepack enable && corepack prepare yarn@stable --activate
 
 # Set work directory
-RUN mkdir /code
+RUN mkdir /code && chown vscode:vscode /code
 WORKDIR /code
+
+COPY ./.devcontainer /tmp/.devcontainer
+
+# Save git config to get correct remote url
+COPY ./.git/config /tmp/gitconfig
 
 # Install pipenv
 RUN pip install --upgrade pipenv

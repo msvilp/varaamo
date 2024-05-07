@@ -27,8 +27,8 @@ services:
     environment:
       DB_HOST: db
       DATABASE_URL: mysql://root:yourlocalrootpassword@db:3306/varaamo
-    # volumes:
-      # - ../:/code
+    volumes:
+      - code:/code
       # - node_modules:/workspace/varaamo-frontend/node_modules
     depends_on:
       db:
@@ -45,4 +45,5 @@ services:
       - varaamo
 volumes:
   mysql_data:
+  code:
   node_modules:
