@@ -1,30 +1,47 @@
 <script lang="ts">
-    import { Table, tableMapperValues } from '@skeletonlabs/skeleton';
-    import type { TableSource } from '@skeletonlabs/skeleton';
-    import type { PageData } from './$types';
+	import { Table, tableMapperValues } from '@skeletonlabs/skeleton';
+	import type { TableSource } from '@skeletonlabs/skeleton';
+	import type { PageData } from './$types';
 
-    export let data: PageData;
+	export let data: PageData;
 
-    const filteredData = data.feed.filter(equipment => equipment.visible === true);
+	var selectedClass: string = '';
 
-    const sourceData = filteredData.map(equipment => ({
-        name: equipment.name,
-        count: equipment.count,
-        rentable: equipment.rentable
-    }));
+	function setTableSource():TableSource {
+		let filteredEquipmentItems = data.equipmentItems.filter(
+			(equipment) => equipment.visible === true
+		);
 
-    const tableSimple: TableSource = {
-        head: ["Name", "Count", "Rentable"],
-        body: tableMapperValues(sourceData, ["name", "count", "rentable"]),
-        meta: tableMapperValues(sourceData, ["name", "count", "rentable"]),
-    }
+		if (selectedClass !== '') {
+			filteredEquipmentItems = filteredEquipmentItems.filter(
+				(equipment) => equipment.equipment_equipmentclass.slug === selectedClass
+			);
+		}
+
+		const equipmentItemTableData = filteredEquipmentItems.map((equipment) => ({
+			name: equipment.name,
+			count: equipment.count,
+			rentable: equipment.rentable
+		}));
+
+		return {
+			head: ['Name', 'Count', 'Rentable'],
+			body: tableMapperValues(equipmentItemTableData, ['name', 'count', 'rentable']),
+			meta: tableMapperValues(equipmentItemTableData, ['name', 'count', 'rentable'])
+		};
+	}
+    let tableSimple = undefined;
+
+    $: tableSimple = selectedClass != null ? setTableSource() : undefined;
 </script>
 
 <h2>Vuokrattavat tuotteet</h2>
 
 <div class="btn-group variant-filled">
-	<button>Kajakit</button>
-	<button>SUP-laudat</button>
+	{#each data.equipmentClasses as category (category.id)}
+		<button class="btn" on:click={() => (selectedClass = category.slug)}>{category.name}</button>
+	{/each}
+    <button class="btn" on:click={() => (selectedClass = "")}>Kaikki</button>
 </div>
 
 <Table source={tableSimple} />
