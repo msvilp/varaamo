@@ -184,3 +184,34 @@ model equipment_equipmentpricerule {
 
   @@index([price_group_id], map: "equipment_equipmentp_price_group_id_76b8cfb7_fk_equipment")
 }
+
+model users_rentaluser {
+  id                    BigInt                  @id @default(autoincrement())
+  name                  String                  @db.VarChar(200)
+  email                 String                  @db.VarChar(200)
+  admin                 Boolean
+  group_id              BigInt
+  users_rentalusergroup users_rentalusergroup   @relation(fields: [group_id], references: [id], onUpdate: Restrict, map: "users_rentaluser_group_id_77f21b09_fk_users_rentalusergroup_id")
+  users_rentaluserlogin users_rentaluserlogin[]
+
+  @@index([group_id], map: "users_rentaluser_group_id_77f21b09_fk_users_rentalusergroup_id")
+}
+
+model users_rentalusergroup {
+  id               BigInt             @id @default(autoincrement())
+  name             String             @db.VarChar(200)
+  slug             String             @db.VarChar(100)
+  users_rentaluser users_rentaluser[]
+
+  @@index([slug], map: "users_rentalusergroup_slug_a7d10b3c")
+}
+
+model users_rentaluserlogin {
+  id               BigInt           @id @default(autoincrement())
+  uuid             String           @unique(map: "uuid") @db.Char(32)
+  expires          DateTime         @db.DateTime(6)
+  user_id          BigInt
+  users_rentaluser users_rentaluser @relation(fields: [user_id], references: [id], onUpdate: Restrict, map: "users_rentaluserlogin_user_id_23fb83a2_fk_users_rentaluser_id")
+
+  @@index([user_id], map: "users_rentaluserlogin_user_id_23fb83a2_fk_users_rentaluser_id")
+}
