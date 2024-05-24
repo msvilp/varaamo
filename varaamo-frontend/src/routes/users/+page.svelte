@@ -1,11 +1,9 @@
 <script lang="ts">
-    import { PageData } from './$types';
-
-    export let users;
+    export let data;
 </script>
 
 <ul>
-    {#each users as user}
-        <li>{user.name}, {user.group}</li>
+    {#each data.allUsers as user}
+        <li>{user.name}, {user.users_rentalusergroup.name}</li>
     {/each}
 </ul>
