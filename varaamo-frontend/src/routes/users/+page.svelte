@@ -2,7 +2,7 @@
     export let data;
 </script>
 
-<ul>
+<ul class="list">
     {#each data.allUsers as user}
         <li>{user.name}, {user.users_rentalusergroup.name}</li>
     {/each}
