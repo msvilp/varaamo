@@ -31,6 +31,9 @@
 			<nav class="list-nav">
 				<a href="/vuokraus/" target="_blank" rel="noreferrer">Vuokraus</a>
 			</nav>
+			<nav class="list-nav">
+				<a href="/users/" target="_blank" rel="noreferrer">Käyttäjät</a>
+			</nav>
 		</nav>
 	</svelte:fragment>
 	<!-- Page Route Content -->
