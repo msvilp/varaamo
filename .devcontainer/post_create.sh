@@ -13,7 +13,9 @@ GITURL=$(grep -A1 '\[remote "origin"\]' /tmp/gitconfig | tail -1 | sed -E 's/^.+
 echo "Installing pip dependencies"
 export PIPENV_VENV_IN_PROJECT=1
 pipenv install --dev
+touch /tmp/pipenv_installed
 
 echo "Installing npm dependencies"
 cd varaamo-frontend
 pnpm install
+touch /tmp/npm_installed
