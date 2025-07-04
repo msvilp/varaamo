@@ -1,0 +1,182 @@
+[
+  {
+    "model": "equipment.equipmentclass",
+    "pk": 1,
+    "fields": {
+      "name": "Kajakki",
+      "slug": "kajakki",
+      "code": "KAJ",
+      "visible": true,
+      "rentable": true
+    }
+  },
+  {
+    "model": "equipment.equipmentclass",
+    "pk": 2,
+    "fields": {
+      "name": "Kanootti",
+      "slug": "kanootti",
+      "code": "KAN",
+      "visible": true,
+      "rentable": true
+    }
+  },
+  {
+    "model": "equipment.equipmentclass",
+    "pk": 3,
+    "fields": {
+      "name": "Kaksikkokajakki",
+      "slug": "kaksikkokajakki",
+      "code": "KK",
+      "visible": true,
+      "rentable": true
+    }
+  },
+  {
+    "model": "equipment.equipmentclass",
+    "pk": 4,
+    "fields": {
+      "name": "Muovikajakki",
+      "slug": "muovikajakki",
+      "code": "MK",
+      "visible": true,
+      "rentable": true
+    }
+  },
+  {
+    "model": "equipment.equipmentgroup",
+    "pk": 1,
+    "fields": {
+      "name": "Kajakit ja kanootit",
+      "slug": "kajakit-ja-kanootit"
+    }
+  },
+  {
+    "model": "equipment.equipmentpricegroup",
+    "pk": 1,
+    "fields": {
+      "name": "Vesiurheilu perus",
+      "slug": "vesiurheilu-perus"
+    }
+  },
+  {
+    "model": "equipment.equipmentpricerule",
+    "pk": 1,
+    "fields": {
+      "customer_price": "15.00",
+      "member_price": "10.00",
+      "time": "hour",
+      "price_group": 1
+    }
+  },
+  {
+    "model": "equipment.equipmentpricerule",
+    "pk": 2,
+    "fields": {
+      "customer_price": "80.00",
+      "member_price": "60.00",
+      "time": "day",
+      "price_group": 1
+    }
+  },
+  {
+    "model": "equipment.equipmentpricerule",
+    "pk": 3,
+    "fields": {
+      "customer_price": "120.00",
+      "member_price": "90.00",
+      "time": "weekend",
+      "price_group": 1
+    }
+  },
+  {
+    "model": "equipment.equipmentitem",
+    "pk": 1,
+    "fields": {
+      "name": "Kajakki K-001",
+      "slug": "kajakki-k-001",
+      "short_slug": "kaj001",
+      "number": "K-001",
+      "visible": true,
+      "rentable": true,
+      "count": 1,
+      "equipment_class": 1,
+      "price_group": 1
+    }
+  },
+  {
+    "model": "equipment.equipmentitem",
+    "pk": 2,
+    "fields": {
+      "name": "Kajakki K-002",
+      "slug": "kajakki-k-002",
+      "short_slug": "kaj002",
+      "number": "K-002",
+      "visible": true,
+      "rentable": true,
+      "count": 1,
+      "equipment_class": 1,
+      "price_group": 1
+    }
+  },
+  {
+    "model": "equipment.equipmentitem",
+    "pk": 3,
+    "fields": {
+      "name": "Kanootti KN-001",
+      "slug": "kanootti-kn-001",
+      "short_slug": "kan001",
+      "number": "KN-001",
+      "visible": true,
+      "rentable": true,
+      "count": 1,
+      "equipment_class": 2,
+      "price_group": 1
+    }
+  },
+  {
+    "model": "equipment.equipmentitem",
+    "pk": 4,
+    "fields": {
+      "name": "Kaksikkokajakki KK-001",
+      "slug": "kaksikkokajakki-kk-001",
+      "short_slug": "kk001",
+      "number": "KK-001",
+      "visible": true,
+      "rentable": true,
+      "count": 1,
+      "equipment_class": 3,
+      "price_group": 1
+    }
+  },
+  {
+    "model": "equipment.equipmentitem",
+    "pk": 5,
+    "fields": {
+      "name": "Muovikajakki MK-001",
+      "slug": "muovikajakki-mk-001",
+      "short_slug": "mk001",
+      "number": "MK-001",
+      "visible": true,
+      "rentable": true,
+      "count": 1,
+      "equipment_class": 4,
+      "price_group": 1
+    }
+  },
+  {
+    "model": "equipment.equipmentitem",
+    "pk": 6,
+    "fields": {
+      "name": "Muovikajakki MK-002",
+      "slug": "muovikajakki-mk-002",
+      "short_slug": "mk002",
+      "number": "MK-002",
+      "visible": true,
+      "rentable": true,
+      "count": 1,
+      "equipment_class": 4,
+      "price_group": 1
+    }
+  }
+]
