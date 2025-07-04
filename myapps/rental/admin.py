@@ -11,6 +11,26 @@ class RentalExtensionInline(admin.TabularInline):
     extra = 0
     readonly_fields = ('original_end_date', 'created_at')
 
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+
+        class CustomFormSet(formset):
+
+            def save_new(self, form, commit=True):
+                # Override save_new to ensure original_end_date is set
+                extension = super().save_new(form, commit=False)
+
+                # Set original_end_date from parent rental if not already set
+                if not extension.original_end_date and hasattr(self, 'instance'):
+                    extension.original_end_date = self.instance.end_date
+
+                if commit:
+                    extension.save()
+
+                return extension
+
+        return CustomFormSet
+
 
 @admin.register(models.Rental)
 class RentalAdmin(admin.ModelAdmin):
