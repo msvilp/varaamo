@@ -1,0 +1,48 @@
+[
+  {
+    "model": "users.rentalusergroup",
+    "pk": 1,
+    "fields": {
+      "name": "Member",
+      "slug": "member"
+    }
+  },
+  {
+    "model": "users.rentalusergroup",
+    "pk": 2,
+    "fields": {
+      "name": "Customer",
+      "slug": "customer"
+    }
+  },
+  {
+    "model": "users.rentaluser",
+    "pk": 1,
+    "fields": {
+      "name": "Matti Meikäläinen",
+      "email": "matti@example.com",
+      "group": 1,
+      "admin": false
+    }
+  },
+  {
+    "model": "users.rentaluser",
+    "pk": 2,
+    "fields": {
+      "name": "Anna Asiakas",
+      "email": "anna@example.com",
+      "group": 2,
+      "admin": false
+    }
+  },
+  {
+    "model": "users.rentaluser",
+    "pk": 3,
+    "fields": {
+      "name": "Admin User",
+      "email": "admin@varaamo.com",
+      "group": 1,
+      "admin": true
+    }
+  }
+]

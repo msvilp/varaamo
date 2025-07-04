@@ -3,4 +3,4 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta:__legacy__"
 
 [tool.pylint.messages_control]
-disable = ["C0115", "C0116", "R0903"]  # missing-class-docstring, too-few-public-methods
+disable = ["C0114", "C0115", "C0116", "R0903"]  # missing-class-docstring, too-few-public-methods
