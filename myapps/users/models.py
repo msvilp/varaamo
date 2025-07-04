@@ -1,6 +1,7 @@
-from django.db import models
 import uuid
 from datetime import datetime, timedelta
+
+from django.db import models
 
 # Create your models here.
 
@@ -9,7 +10,7 @@ class RentalUserGroup(models.Model):
     slug = models.SlugField(max_length=100)
 
     def __str__(self):
-        return f"{self.__class__.__name__} #{self.id}: {self.name}"
+        return f"{self.__class__.__name__} #{self.pk}: {self.name}"
 
 
 class RentalUser(models.Model):
@@ -19,7 +20,7 @@ class RentalUser(models.Model):
     admin = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.__class__.__name__} #{self.id}: {self.name}"
+        return f"{self.name}"
 
 
 def default_expiry_date():
@@ -34,4 +35,4 @@ class RentalUserLogin(models.Model):
         return self.expires < datetime.datetime.now
 
     def __str__(self):
-        return f"{self.__class__.__name__} #{self.id}: expires {self.expires}"
+        return f"{self.__class__.__name__} #{self.pk}: expires {self.expires}"
