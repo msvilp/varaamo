@@ -1,6 +1,10 @@
+"""
+# Varaamo - Equipment Management Models
+# This module defines models for managing equipment, including price rules, classes, groups, and individual items."""
+import uuid
+
 from django.db import models
 
-import uuid
 
 PRICE_RULE_OPTIONS = (
     ('hour', 'Hour'),
@@ -19,7 +23,7 @@ class EquipmentPriceRule(models.Model):
     price_group = models.ForeignKey("EquipmentPriceGroup", on_delete=models.CASCADE, related_name="rules")
 
     def __str__(self):
-        return f"{self.__class__.__name__} #{self.id}: {self.customer_price} / {self.member_price} / {self.time}"
+        return f"{self.__class__.__name__} #{self.pk}: {self.customer_price} / {self.member_price} / {self.time}"
 
     class Meta:
         verbose_name = "equipment price rule"
@@ -32,7 +36,7 @@ class EquipmentPriceGroup(models.Model):
     slug = models.SlugField(max_length=100, editable=False)
 
     def __str__(self):
-        return f"{self.__class__.__name__} #{self.id}: {self.name}"
+        return f"{self.__class__.__name__} #{self.pk}: {self.name}"
 
     class Meta:
         verbose_name = "equipment price group"
@@ -48,7 +52,7 @@ class EquipmentClass(models.Model):
     rentable = models.BooleanField(default=True)
 
     def __str__(self):
-        return f"{self.__class__.__name__} #{self.id}: {self.name}"
+        return f"{self.__class__.__name__} #{self.pk}: {self.name}"
 
     class Meta:
         verbose_name = "equipment class"
@@ -62,7 +66,11 @@ class EquipmentGroup(models.Model):
     image = models.ImageField(upload_to="equipment_images/", blank=True)
 
     def __str__(self):
-        return f"{self.__class__.__name__} #{self.id}: {self.name}"
+        return f"{self.__class__.__name__} #{self.pk}: {self.name}"
+
+    class Meta:
+        verbose_name = "equipment group"
+        verbose_name_plural = "equipment groups"
 
 
 class EquipmentItem(models.Model):
@@ -98,6 +106,9 @@ class EquipmentItem(models.Model):
         blank=True,
     )
 
-
     def __str__(self):
-        return f"{self.__class__.__name__} #{self.id}: {self.equipment_class.name} / {self.name}"
+        return f"{self.__class__.__name__} #{self.pk}: {self.equipment_class.name} / {self.name}"
+
+    class Meta:
+        verbose_name = "equipment item"
+        verbose_name_plural = "equipment items"

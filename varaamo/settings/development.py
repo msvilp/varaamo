@@ -1,9 +1,10 @@
 """
 Settings for local development.
 """
+# pylint: disable=wildcard-import,unused-wildcard-import
+import os
 
 from .base import *  # noqa: F403, F401
-import os
 
 ALLOWED_HOSTS = ["*"]
 CSRF_TRUSTED_ORIGINS = ["http://localhost:8030"]
@@ -11,11 +12,7 @@ DEBUG = True
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DATABASE', 'varaamo'),
-        'USER': os.environ.get('MYSQL_USER', 'varaamo'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD', 'varaamo'),
-        'HOST': os.environ.get('DB_HOST', '127.0.0.1'),
-        'PORT': os.environ.get('DB_PORT', '3306'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
